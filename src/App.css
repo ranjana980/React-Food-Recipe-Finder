@@ -55,7 +55,6 @@ img {
 .side-nav {
   background: #007bff !important;
   width: 18%;
-  /* position: relative; */
   border-radius: 10px;
   left: 10px;
   top: 10px;
@@ -64,9 +63,7 @@ img {
 
 .input {
   width: 40% !important;
-  /* position: relative; */
   left: 300px;
-  /* margin-top: 10px; */
 }
 
 .main{
@@ -78,15 +75,12 @@ img {
   .side-nav {
     background: #007bff !important;
     width: 26%;
-    /* position: relative; */
     border-radius: 10px;
     left: 10px;
     top: 10px;
     height: 700px;
 }
-  /* .side-nav {
-    display: none;
-  } */
+
 
 }
 
@@ -113,7 +107,6 @@ img {
   }
   .input{
     width: 89% !important;
-    /* position: relative; */
     left: 52px;
     
   }
