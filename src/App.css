@@ -5,6 +5,10 @@ h1 {
   margin-left: 5%;
 }
 
+.icon{
+  font-size: 2rem !important;
+  
+}
 .side-nav h5 {
   margin-bottom: 30px;
   color: white;
@@ -84,25 +88,28 @@ img {
 
 }
 
-@media(max-width:736px) {
+@media only screen and (min-width: 320px) and (max-width: 480px)  {
+ 
   .title {
-    bottom: 419px;
-    width: 283px;
+    bottom: 294px;
+    width: 236px;
     border-radius: 10px;
-    left: 66px;
-    font-size: 38px;
+    left: 7px;
+    font-size: 15px;
     opacity: 0.8;
 }
- 
+ .d-res{
+  font-size: 16px;
+ }
   .icon{
-    font-size: 3rem !important;
+    font-size: 2rem !important;
     margin-bottom: 10px !important;
   }
   body{
-    font-size: 2rem;
+    font-size: 24px;
   }
   .main{
-    height: 610px;
+    height: 360px;
       filter: drop-shadow(2px 2px 2px);
   }
   .input{

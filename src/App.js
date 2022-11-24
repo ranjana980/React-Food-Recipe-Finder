@@ -4,14 +4,16 @@ import axios from "axios";
 import ShareIcon from '@material-ui/icons/Share';
 import { Visibility } from '@material-ui/icons'
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
-import {  Dialog, DialogContent, DialogContentText, TextareaAutosize } from "@material-ui/core";
-
+import { Dialog, DialogContent, DialogContentText, TextareaAutosize } from "@material-ui/core";
+// import CopyToClipboard from 'react-copy-to-clipboard';
+import { WhatsappShareButton, WhatsappIcon, } from 'react-share'
 function App() {
   const [search, setSearch] = useState("Paneer")
   const [resp, setResp] = useState("")
   const [dataList, setDataList] = useState([])
   const [IsOpen, setIsOpen] = useState(false)
   const [SummaryDetails, setSummaryDetails] = useState([])
+
 
   useEffect(() => {
     getRecipies()
@@ -33,7 +35,7 @@ function App() {
     <>
       <div className='d-flex'>
         <div className="side-nav  position-relative w-24 mr-5 bg-light">
-        <h5 className='mt-5 ml-2'>Recommended Keyword</h5>
+          <h5 className='mt-5 ml-2'>Recommended Keyword</h5>
           <div className="w-76 ml-5 mt-2">
             <div className="keyword w-75 text-center bg-white p-1" onClick={() => {
               setSearch('Daal')
@@ -101,27 +103,30 @@ function App() {
           }} /><button className='btn btn-default ml-2' onClick={() => setSearch(resp)}>Search</button></div>
           <div className='row'>
             {dataList.map((item, index) => (
-              <div className='col-md-3 col-lg-2 col-xs-12 col-sm-12 card ml-3 mt-3 p-3 main' style={{ filter:'drop-shadow(2px 2px 2px)' }} key={index}>
+              <div className='col-md-3 col-lg-2 col-xs-12 col-sm-12 card ml-3 mt-3 p-3 main' style={{ filter: 'drop-shadow(2px 2px 2px)' }} key={index}>
                 <img src={item.recipe.image} />
                 <div></div>
                 <div className='d-flex mt-3 justify-content-between'>
                   <ImportContactsIcon onClick={() => {
-                  setIsOpen(true)
-                  setSummaryDetails(item.recipe.ingredients)
-                }} className="icon" style={{ color: "#007bff" }} />
-                <b className='mb-sm-4'>{item.recipe.mealType}</b>
-                <ShareIcon className="icon" style={{ color: "#007bff" }} /> </div>
+                    setIsOpen(true)
+                    setSummaryDetails(item.recipe.ingredients)
+                  }} className="icon" style={{ color: "#007bff" }} />
+                  <b className='mb-sm-4'>{item.recipe.mealType}</b>
+                  <WhatsappShareButton url={item.recipe.shareAs} style={{marginLeft:'10px'}}>
+                    <WhatsappIcon  size={25}className="icon" style={{ color: "#007bff" }} />
+                  </WhatsappShareButton>
+                </div>
                 <h6 className='title position-relative  text-center bg-white p-2'>{item.recipe.label}</h6>
               </div>
             ))}
             <Dialog maxWidth='sm' minWidth='sm' open={IsOpen} onClose={() => setIsOpen(false)}>
-              <div className='w-100 p-5' style={{ background: '#417dbd'}}>
+              <div className='w-100 p-5 d-res' style={{ background: '#417dbd' }}>
                 <div >
                   <h5 className='text-center' >Ingredients </h5>
                   {SummaryDetails.map((item, index) => (
-                    <div style={{marginTop:'10px'}} key={index}><span> <img height={50} width={50} src={item.image} /><b style={{marginLeft:'10px'}}>{item.quantity} {item.measure}</b> {item.food}.</span></div>
+                    <div style={{ marginTop: '10px' }} key={index}><span> <img height={50} width={50} src={item.image} /><b style={{ marginLeft: '10px' }}>{item.quantity} {item.measure}</b> {item.food}.</span></div>
                   ))}
-                  <button type="button" onClick={() => setIsOpen(false)} className="bg-red w-25 mt-5 ml-5" style={{ border: 'none', backgroundColor: 'red', color: 'white',  fontSize: '17px', borderRadius: '8px',  cursor: 'pointer' }}>Close</button>
+                  <button type="button" onClick={() => setIsOpen(false)} className="bg-red w-25 mt-5 ml-5" style={{ border: 'none', backgroundColor: 'red', color: 'white', fontSize: '17px', borderRadius: '8px', cursor: 'pointer' }}>Close</button>
                 </div></div>
             </Dialog>
           </div>
